@@ -3,19 +3,24 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B920FB322C31B264007D2FE9 /* SIdeDrawer_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920FB312C31B264007D2FE9 /* SIdeDrawer_App.swift */; };
-		B920FB342C31B264007D2FE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920FB332C31B264007D2FE9 /* ContentView.swift */; };
-		B920FB362C31B266007D2FE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B920FB352C31B266007D2FE9 /* Assets.xcassets */; };
+		B920FB322C31B264007D2FE9 /* DrawerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920FB312C31B264007D2FE9 /* DrawerApp.swift */; };
 		B920FB392C31B266007D2FE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B920FB382C31B266007D2FE9 /* Preview Assets.xcassets */; };
-		B920FB3B2C31B266007D2FE9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920FB3A2C31B266007D2FE9 /* Persistence.swift */; };
-		B920FB3E2C31B266007D2FE9 /* SIdeDrawer_.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B920FB3C2C31B266007D2FE9 /* SIdeDrawer_.xcdatamodeld */; };
 		B920FB482C31B267007D2FE9 /* SIdeDrawer_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920FB472C31B267007D2FE9 /* SIdeDrawer_Tests.swift */; };
 		B920FB522C31B267007D2FE9 /* SIdeDrawer_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920FB512C31B267007D2FE9 /* SIdeDrawer_UITests.swift */; };
 		B920FB542C31B267007D2FE9 /* SIdeDrawer_UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920FB532C31B267007D2FE9 /* SIdeDrawer_UITestsLaunchTests.swift */; };
+		B920FB742C321CD3007D2FE9 /* Navigation.docc in Sources */ = {isa = PBXBuildFile; fileRef = B920FB732C321CD3007D2FE9 /* Navigation.docc */; };
+		B920FB7B2C328E68007D2FE9 /* create_drawer-V10.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920FB7A2C328E66007D2FE9 /* create_drawer-V10.swift */; };
+		B920FB7D2C329198007D2FE9 /* AIComponents-V1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920FB7C2C329198007D2FE9 /* AIComponents-V1.swift */; };
+		B920FB7F2C329EEB007D2FE9 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = B920FB7E2C329EEB007D2FE9 /* Shaders.metal */; };
+		B920FB832C32A080007D2FE9 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B920FB812C32A034007D2FE9 /* MetalKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		B920FB842C32A080007D2FE9 /* MetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B920FB812C32A034007D2FE9 /* MetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B920FB872C32A37A007D2FE9 /* ParticleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920FB862C32A37A007D2FE9 /* ParticleSystem.swift */; };
+		B920FB892C32A784007D2FE9 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920FB882C32A784007D2FE9 /* MetalView.swift */; };
+		B920FB8B2C32A7AC007D2FE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920FB8A2C32A7AC007D2FE9 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,26 +40,69 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B920FB852C32A081007D2FE9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B920FB842C32A080007D2FE9 /* MetalKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		B920FB2E2C31B264007D2FE9 /* SIdeDrawer[.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SIdeDrawer[.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B920FB312C31B264007D2FE9 /* SIdeDrawer_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIdeDrawer_App.swift; sourceTree = "<group>"; };
-		B920FB332C31B264007D2FE9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B920FB352C31B266007D2FE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B920FB312C31B264007D2FE9 /* DrawerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerApp.swift; sourceTree = "<group>"; };
 		B920FB382C31B266007D2FE9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B920FB3A2C31B266007D2FE9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		B920FB3D2C31B266007D2FE9 /* SIdeDrawer_.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SIdeDrawer_.xcdatamodel; sourceTree = "<group>"; };
 		B920FB432C31B267007D2FE9 /* SIdeDrawer[Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SIdeDrawer[Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B920FB472C31B267007D2FE9 /* SIdeDrawer_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIdeDrawer_Tests.swift; sourceTree = "<group>"; };
 		B920FB4D2C31B267007D2FE9 /* SIdeDrawer[UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SIdeDrawer[UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B920FB512C31B267007D2FE9 /* SIdeDrawer_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIdeDrawer_UITests.swift; sourceTree = "<group>"; };
 		B920FB532C31B267007D2FE9 /* SIdeDrawer_UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIdeDrawer_UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B920FB732C321CD3007D2FE9 /* Navigation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Navigation.docc; sourceTree = "<group>"; };
+		B920FB7A2C328E66007D2FE9 /* create_drawer-V10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "create_drawer-V10.swift"; sourceTree = "<group>"; };
+		B920FB7C2C329198007D2FE9 /* AIComponents-V1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIComponents-V1.swift"; sourceTree = "<group>"; };
+		B920FB7E2C329EEB007D2FE9 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		B920FB812C32A034007D2FE9 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		B920FB862C32A37A007D2FE9 /* ParticleSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleSystem.swift; sourceTree = "<group>"; };
+		B920FB882C32A784007D2FE9 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
+		B920FB8A2C32A7AC007D2FE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B920FB772C321DEC007D2FE9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				Persistence.swift,
+				SIdeDrawer_.xcdatamodeld,
+			);
+			target = B920FB2D2C31B264007D2FE9 /* SIdeDrawer[ */;
+		};
+		B920FB902C32AB6B007D2FE9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ShaderSource.swift,
+			);
+			target = B920FB2D2C31B264007D2FE9 /* SIdeDrawer[ */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B920FB762C321DE6007D2FE9 /* CoreData */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B920FB772C321DEC007D2FE9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = CoreData; sourceTree = "<group>"; };
+		B920FB8D2C32AB14007D2FE9 /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B920FB902C32AB6B007D2FE9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B920FB2B2C31B264007D2FE9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B920FB832C32A080007D2FE9 /* MetalKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,10 +126,11 @@
 		B920FB252C31B264007D2FE9 = {
 			isa = PBXGroup;
 			children = (
-				B920FB302C31B264007D2FE9 /* SIdeDrawer[ */,
-				B920FB462C31B267007D2FE9 /* SIdeDrawer[Tests */,
-				B920FB502C31B267007D2FE9 /* SIdeDrawer[UITests */,
+				B920FB302C31B264007D2FE9 /* Navigational Menu */,
+				B920FB462C31B267007D2FE9 /* NavigationDrawerTests */,
+				B920FB502C31B267007D2FE9 /* NavigationDrawerUITests */,
 				B920FB2F2C31B264007D2FE9 /* Products */,
+				B920FB802C32A033007D2FE9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,17 +144,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B920FB302C31B264007D2FE9 /* SIdeDrawer[ */ = {
+		B920FB302C31B264007D2FE9 /* Navigational Menu */ = {
 			isa = PBXGroup;
 			children = (
-				B920FB312C31B264007D2FE9 /* SIdeDrawer_App.swift */,
-				B920FB332C31B264007D2FE9 /* ContentView.swift */,
-				B920FB352C31B266007D2FE9 /* Assets.xcassets */,
-				B920FB3A2C31B266007D2FE9 /* Persistence.swift */,
-				B920FB3C2C31B266007D2FE9 /* SIdeDrawer_.xcdatamodeld */,
+				B920FB7A2C328E66007D2FE9 /* create_drawer-V10.swift */,
+				B920FB312C31B264007D2FE9 /* DrawerApp.swift */,
+				B920FB7C2C329198007D2FE9 /* AIComponents-V1.swift */,
 				B920FB372C31B266007D2FE9 /* Preview Content */,
+				B920FB762C321DE6007D2FE9 /* CoreData */,
+				B920FB732C321CD3007D2FE9 /* Navigation.docc */,
+				B920FB7E2C329EEB007D2FE9 /* Shaders.metal */,
+				B920FB862C32A37A007D2FE9 /* ParticleSystem.swift */,
+				B920FB882C32A784007D2FE9 /* MetalView.swift */,
+				B920FB8A2C32A7AC007D2FE9 /* ViewController.swift */,
+				B920FB8D2C32AB14007D2FE9 /* Resources */,
 			);
-			path = "SIdeDrawer[";
+			path = "Navigational Menu";
 			sourceTree = "<group>";
 		};
 		B920FB372C31B266007D2FE9 /* Preview Content */ = {
@@ -116,21 +170,29 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		B920FB462C31B267007D2FE9 /* SIdeDrawer[Tests */ = {
+		B920FB462C31B267007D2FE9 /* NavigationDrawerTests */ = {
 			isa = PBXGroup;
 			children = (
 				B920FB472C31B267007D2FE9 /* SIdeDrawer_Tests.swift */,
 			);
-			path = "SIdeDrawer[Tests";
+			path = NavigationDrawerTests;
 			sourceTree = "<group>";
 		};
-		B920FB502C31B267007D2FE9 /* SIdeDrawer[UITests */ = {
+		B920FB502C31B267007D2FE9 /* NavigationDrawerUITests */ = {
 			isa = PBXGroup;
 			children = (
 				B920FB512C31B267007D2FE9 /* SIdeDrawer_UITests.swift */,
 				B920FB532C31B267007D2FE9 /* SIdeDrawer_UITestsLaunchTests.swift */,
 			);
-			path = "SIdeDrawer[UITests";
+			path = NavigationDrawerUITests;
+			sourceTree = "<group>";
+		};
+		B920FB802C32A033007D2FE9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B920FB812C32A034007D2FE9 /* MetalKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +205,7 @@
 				B920FB2A2C31B264007D2FE9 /* Sources */,
 				B920FB2B2C31B264007D2FE9 /* Frameworks */,
 				B920FB2C2C31B264007D2FE9 /* Resources */,
+				B920FB852C32A081007D2FE9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -212,7 +275,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B920FB292C31B264007D2FE9 /* Build configuration list for PBXProject "SIdeDrawer[" */;
+			buildConfigurationList = B920FB292C31B264007D2FE9 /* Build configuration list for PBXProject "Drawer Menu" */;
 			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -238,7 +301,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B920FB392C31B266007D2FE9 /* Preview Assets.xcassets in Resources */,
-				B920FB362C31B266007D2FE9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,10 +325,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B920FB3B2C31B266007D2FE9 /* Persistence.swift in Sources */,
-				B920FB3E2C31B266007D2FE9 /* SIdeDrawer_.xcdatamodeld in Sources */,
-				B920FB342C31B264007D2FE9 /* ContentView.swift in Sources */,
-				B920FB322C31B264007D2FE9 /* SIdeDrawer_App.swift in Sources */,
+				B920FB8B2C32A7AC007D2FE9 /* ViewController.swift in Sources */,
+				B920FB7B2C328E68007D2FE9 /* create_drawer-V10.swift in Sources */,
+				B920FB7D2C329198007D2FE9 /* AIComponents-V1.swift in Sources */,
+				B920FB872C32A37A007D2FE9 /* ParticleSystem.swift in Sources */,
+				B920FB742C321CD3007D2FE9 /* Navigation.docc in Sources */,
+				B920FB7F2C329EEB007D2FE9 /* Shaders.metal in Sources */,
+				B920FB892C32A784007D2FE9 /* MetalView.swift in Sources */,
+				B920FB322C31B264007D2FE9 /* DrawerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,8 +495,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SIdeDrawer[/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/Navigational Menu/Preview Content/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 3RZW3P2M39;
+				DOCC_EXTRACT_OBJC_INFO_FOR_SWIFT_SYMBOLS = YES;
+				DOCC_EXTRACT_SWIFT_INFO_FOR_OBJC_SYMBOLS = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -438,6 +506,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -445,6 +514,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.garyrellis.SIdeDrawer-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -458,8 +528,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SIdeDrawer[/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/Navigational Menu/Preview Content/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 3RZW3P2M39;
+				DOCC_EXTRACT_OBJC_INFO_FOR_SWIFT_SYMBOLS = YES;
+				DOCC_EXTRACT_SWIFT_INFO_FOR_OBJC_SYMBOLS = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -467,6 +539,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -474,6 +547,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.garyrellis.SIdeDrawer-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -555,7 +629,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B920FB292C31B264007D2FE9 /* Build configuration list for PBXProject "SIdeDrawer[" */ = {
+		B920FB292C31B264007D2FE9 /* Build configuration list for PBXProject "Drawer Menu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B920FB552C31B267007D2FE9 /* Debug */,
@@ -592,19 +666,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		B920FB3C2C31B266007D2FE9 /* SIdeDrawer_.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				B920FB3D2C31B266007D2FE9 /* SIdeDrawer_.xcdatamodel */,
-			);
-			currentVersion = B920FB3D2C31B266007D2FE9 /* SIdeDrawer_.xcdatamodel */;
-			path = SIdeDrawer_.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = B920FB262C31B264007D2FE9 /* Project object */;
 }

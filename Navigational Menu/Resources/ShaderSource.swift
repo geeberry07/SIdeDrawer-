@@ -1,3 +1,4 @@
+let shaderSource = """
 #include <metal_stdlib>
 using namespace metal;
 
@@ -10,8 +11,8 @@ struct Particle {
 vertex Particle particle_vertex(uint vertexID [[vertex_id]],
                                 constant Particle* particles [[buffer(0)]]) {
     Particle out;
-    out.position = float4(particles[vertexID].position.x, particles[vertexID].position.y, 0.0, 1.0);  // Correct initialization
-    out.texcoord = particles[vertexID].position * 0.5 + 0.5;  // Normalized texture coordinates
+    out.position = float4(particles[vertexID].position.x, particles[vertexID].position.y, 0.0, 1.0);
+    out.texcoord = particles[vertexID].position * 0.5 + 0.5;
     out.color = particles[vertexID].color;
     return out;
 }
@@ -25,3 +26,4 @@ fragment float4 particle_fragment(Particle in [[stage_in]],
     color.rgb += sin(pos * 10.0) * 0.1;
     return color;
 }
+"""

@@ -1,18 +1,11 @@
-//
-//  ViewController.swift
-//  SIdeDrawer[
-//
-//  Created by garyberry09 on 7/1/24.
-//
+import UIKit
 
-import SwiftUI
+class ViewController: UIViewController {
+    var metalView: MetalView!
 
-struct ViewController: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        metalView = MetalView(frame: view.bounds)
+        view.addSubview(metalView)
     }
-}
-
-#Preview {
-    ViewController()
 }

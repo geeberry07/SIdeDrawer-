@@ -1,268 +1,22 @@
-/*/*
- To create a more responsive AI indicator that changes colors and icons based on the state, we can use a combination of SwiftUI animations and state management. We'll add additional states to represent different feelings and animations to transition between these states smoothly.
-
-Here's how to implement this:
-
-### Step 1: Define Additional States
-
-Define additional states to represent different feelings.
-
-```swift
- */
-
-import SwiftUI
-
-enum AIState {
-    case idle, loading, typing, dictating, talking, happy, sad, thinking
-}
 /*
- ```
-
-### Step 2: Update the Indicator View
-
-Update the `AIIndicatorView` to handle these additional states and provide the necessary animations.
-
-**AIIndicatorView.swift**
-
-```swift
- */
-import SwiftUI
-
-struct AIIndicatorView: View {
-    @State var aiState: AIState = .idle
-
-    var body: some View {
-        VStack {
-            Spacer()
-            
-            // Indicator based on AI state
-            HStack {
-                if aiState == .loading {
-                    LoadingView()
-                } else if aiState == .typing {
-                    TypingView()
-                } else if aiState == .dictating {
-                    DictatingView()
-                } else if aiState == .talking {
-                    TalkingView()
-                } else if aiState == .happy {
-                    FeelingView(iconName: "smiley.fill", color: .yellow)
-                } else if aiState == .sad {
-                    FeelingView(iconName: "frown.fill", color: .blue)
-                } else if aiState == .thinking {
-                    FeelingView(iconName: "brain.head.profile", color: .purple)
-                }
-            }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(10)
-            .shadow(radius: 5)
-            
-            Spacer()
-            
-            // Buttons to simulate state changes
-            HStack {
-                Button("Idle") { aiState = .idle }
-                Button("Loading") { aiState = .loading }
-                Button("Typing") { aiState = .typing }
-                Button("Dictating") { aiState = .dictating }
-                Button("Talking") { aiState = .talking }
-                Button("Happy") { aiState = .happy }
-                Button("Sad") { aiState = .sad }
-                Button("Thinking") { aiState = .thinking }
-            }
-            .padding()
-        }
-        .background(Color.gray.opacity(0.2).ignoresSafeArea())
-    }
-}
-
-struct AIIndicatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        AIIndicatorView()
-    }
-}
-/*
- ```
-
-### Step 3: Create the Individual Indicator Views
-
-Update the views for loading, typing, dictating, talking, and add new views for different feelings.
-
-**LoadingView.swift**
-
-```swift
- */
-import SwiftUI
-
-struct LoadingView: View {
-    @State private var isAnimating = false
-
-    var body: some View {
-        Circle()
-            .trim(from: 0, to: 0.6)
-            .stroke(Color.blue, lineWidth: 5)
-            .frame(width: 50, height: 50)
-            .rotationEffect(Angle(degrees: isAnimating ? 360 : 0))
-            .onAppear {
-                withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: false)) {
-                    isAnimating = true
-                }
-            }
-    }
-}
-
-struct LoadingView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoadingView()
-    }
-}
-/*```
-
-**TypingView.swift**
-
-```swift
- */
-import SwiftUI
-
-struct TypingView: View {
-    @State private var scale: CGFloat = 0.5
-
-    var body: some View {
-        HStack(spacing: 5) {
-            Circle().frame(width: 10, height: 10)
-            Circle().frame(width: 10, height: 10)
-            Circle().frame(width: 10, height: 10)
-        }
-        .foregroundColor(.blue)
-        .scaleEffect(scale)
-        .onAppear {
-            withAnimation(Animation.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
-                scale = 1.0
-            }
-        }
-    }
-}
-
-struct TypingView_Previews: PreviewProvider {
-    static var previews: some View {
-        TypingView()
-    }
-}
-/*
- ```
-
-**DictatingView.swift**
-
-```swift
- */
-
-import SwiftUI
-
-struct DictatingView: View {
-    @State private var opacity: Double = 0.2
-
-    var body: some View {
-        RoundedRectangle(cornerRadius: 5)
-            .fill(Color.red)
-            .frame(width: 30, height: 50)
-            .opacity(opacity)
-            .onAppear {
-                withAnimation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true)) {
-                    opacity = 1.0
-                }
-            }
-    }
-}
-
-struct DictatingView_Previews: PreviewProvider {
-    static var previews: some View {
-        DictatingView()
-    }
-}
-/*
- ```
-
-**TalkingView.swift**
-
-```swift
- */
-import SwiftUI
-
-struct TalkingView: View {
-    @State private var offset: CGFloat = -10
-    @State private var color: Color = .green
-
-    var body: some View {
-        HStack(spacing: 5) {
-            Rectangle().frame(width: 5, height: 20)
-            Rectangle().frame(width: 5, height: 30)
-            Rectangle().frame(width: 5, height: 20)
-        }
-        .foregroundColor(color)
-        .offset(y: offset)
-        .onAppear {
-            withAnimation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true)) {
-                offset = 10
-                color = .red
-            }
-        }
-    }
-}
-
-struct TalkingView_Previews: PreviewProvider {
-    static var previews: some View {
-        TalkingView()
-    }
-}
-/*
- ```
-
-**FeelingView.swift**
-
-```swift
- */
-
-import SwiftUI
-
-struct FeelingView: View {
-    var iconName: String
-    var color: Color
-    @State private var isAnimating = false
-
-    var body: some View {
-        Image(systemName: iconName)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 50, height: 50)
-            .foregroundColor(color)
-            .scaleEffect(isAnimating ? 1.2 : 1.0)
-            .animation(Animation.easeInOut(duration: 0.6).repeatForever(autoreverses: true))
-            .onAppear {
-                isAnimating = true
-            }
-    }
-}
-
-struct FeelingView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeelingView(iconName: "smiley.fill", color: .yellow)
-    }
-}
+To create a component that indicates loading, typing, dictation, and an animation for when the AI is talking, we can use `Lottie`, a library for animations in SwiftUI, or SwiftUI's built-in animation capabilities for simpler effects. In this example, we'll use SwiftUI's built-in animation features to create these indicators.
 */
-/*```
-### Full Implementation
-**AIIndicatorView.swift*
-```swift
- */
+
+// ### Step 1: Define the States
+// First, define the states for loading, typing, dictation, and talking.
+// ```swift
 import SwiftUI
-import UIKit
-import Foundation
-import Combine
 
 enum AIState {
-    case idle, loading, typing, dictating, talking, happy, sad, thinking
+    case idle, loading, typing, dictating, talking
 }
+// ```
+
+// ### Step 2: Create the Indicator View
+// Next, create the indicator view that will change based on the AI's state.
+// **AIIndicatorView.swift**
+// ```swift
+import SwiftUI
 
 struct AIIndicatorView: View {
     @State var aiState: AIState = .idle
@@ -281,12 +35,6 @@ struct AIIndicatorView: View {
                     DictatingView()
                 } else if aiState == .talking {
                     TalkingView()
-                } else if aiState == .happy {
-                    FeelingView(iconName: "smiley.fill", color: .yellow)
-                } else if aiState == .sad {
-                    FeelingView(iconName: "frown.fill", color: .blue)
-                } else if aiState == .thinking {
-                    FeelingView(iconName: "brain.head.profile", color: .purple)
                 }
             }
             .padding()
@@ -303,9 +51,6 @@ struct AIIndicatorView: View {
                 Button("Typing") { aiState = .typing }
                 Button("Dictating") { aiState = .dictating }
                 Button("Talking") { aiState = .talking }
-                Button("Happy") { aiState = .happy }
-                Button("Sad") { aiState = .sad }
-                Button("Thinking") { aiState = .thinking }
             }
             .padding()
         }
@@ -318,11 +63,12 @@ struct AIIndicatorView_Previews: PreviewProvider {
         AIIndicatorView()
     }
 }
-/*
-```
-**LoadingView.swift**
-```swift
- */
+// ```
+
+// ### Step 3: Create the Individual Indicator Views
+// Now, create the views for loading, typing, dictating, and talking indicators.
+// **LoadingView.swift**
+// ```swift
 import SwiftUI
 
 struct LoadingView: View {
@@ -334,10 +80,9 @@ struct LoadingView: View {
             .stroke(Color.blue, lineWidth: 5)
             .frame(width: 50, height: 50)
             .rotationEffect(Angle(degrees: isAnimating ? 360 : 0))
+            .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
             .onAppear {
-                withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: false)) {
-                    isAnimating = true
-                }
+                isAnimating = true
             }
     }
 }
@@ -347,31 +92,26 @@ struct LoadingView_Previews: PreviewProvider {
         LoadingView()
     }
 }
-/*
- ```
-**TypingView.swift**
-```swift
- */
+// ```
+
+// **TypingView.swift**
+// ```swift
 import SwiftUI
 
 struct TypingView: View {
     @State private var scale: CGFloat = 0.5
 
     var body: some View {
-        HStack(spacing
-
-
-: 5) {
+        HStack(spacing: 5) {
             Circle().frame(width: 10, height: 10)
             Circle().frame(width: 10, height: 10)
             Circle().frame(width: 10, height: 10)
         }
         .foregroundColor(.blue)
         .scaleEffect(scale)
+        .animation(Animation.easeInOut(duration: 0.8).repeatForever(autoreverses: true))
         .onAppear {
-            withAnimation(Animation.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
-                scale = 1.0
-            }
+            scale = 1.0
         }
     }
 }
@@ -381,10 +121,10 @@ struct TypingView_Previews: PreviewProvider {
         TypingView()
     }
 }
-/* ```
-**DictatingView.swift**
-```swift
- */
+// ```
+
+// **DictatingView.swift**
+// ```swift
 import SwiftUI
 
 struct DictatingView: View {
@@ -395,10 +135,9 @@ struct DictatingView: View {
             .fill(Color.red)
             .frame(width: 30, height: 50)
             .opacity(opacity)
+            .animation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true))
             .onAppear {
-                withAnimation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true)) {
-                    opacity = 1.0
-                }
+                opacity = 1.0
             }
     }
 }
@@ -408,15 +147,14 @@ struct DictatingView_Previews: PreviewProvider {
         DictatingView()
     }
 }
-/*```
-**TalkingView.swift**
-```swift
- */
+// ```
+
+// **TalkingView.swift**
+// ```swift
 import SwiftUI
 
 struct TalkingView: View {
     @State private var offset: CGFloat = -10
-    @State private var color: Color = .green
 
     var body: some View {
         HStack(spacing: 5) {
@@ -424,13 +162,11 @@ struct TalkingView: View {
             Rectangle().frame(width: 5, height: 30)
             Rectangle().frame(width: 5, height: 20)
         }
-        .foregroundColor(color)
+        .foregroundColor(.green)
         .offset(y: offset)
+        .animation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true))
         .onAppear {
-            withAnimation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true)) {
-                offset = 10
-                color = .red
-            }
+            offset = 10
         }
     }
 }
@@ -440,39 +176,154 @@ struct TalkingView_Previews: PreviewProvider {
         TalkingView()
     }
 }
-/*
- ```
-**FeelingView.swift**
-```swift
- */
+// ```
+
+// ### Step 4: Combine and Test
+// Combine these components in `AIIndicatorView` and test the different states using the buttons.
+// ### Full Implementation
+// **AIIndicatorView.swift**
+
+// ```swift
 import SwiftUI
 
-struct FeelingView: View {
-    var iconName: String
-    var color: Color
+struct IndicatorView: View {
+    @State var aiState: AIState = .idle
+
+    var body: some View {
+        VStack {
+            Spacer()
+            
+            // Indicator based on AI state
+            HStack {
+                if aiState == .loading {
+                    LoadingView()
+                } else if aiState == .typing {
+                    TypingView()
+                } else if aiState == .dictating {
+                    DictatingView()
+                } else if aiState == .talking {
+                    TalkingView()
+                }
+            }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
+            
+            Spacer()
+            
+            // Buttons to simulate state changes
+            HStack {
+                Button("Idle") { aiState = .idle }
+                Button("Loading") { aiState = .loading }
+                Button("Typing") { aiState = .typing }
+                Button("Dictating") { aiState = .dictating }
+                Button("Talking") { aiState = .talking }
+            }
+            .padding()
+        }
+        .background(Color.gray.opacity(0.2).ignoresSafeArea())
+    }
+}
+
+struct IndicatorView_Previews: PreviewProvider {
+    static var previews: some View {
+        AIIndicatorView()
+    }
+}
+
+struct LoadView: View {
     @State private var isAnimating = false
 
     var body: some View {
-        Image(systemName: iconName)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
+        Circle()
+            .trim(from: 0, to: 0.6)
+            .stroke(Color.blue, lineWidth: 5)
             .frame(width: 50, height: 50)
-            .foregroundColor(color)
-            .scaleEffect(isAnimating ? 1.2 : 1.0)
-            .animation(Animation.easeInOut(duration: 0.6).repeatForever(autoreverses: true))
+            .rotationEffect(Angle(degrees: isAnimating ? 360 : 0))
+            .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
             .onAppear {
                 isAnimating = true
             }
     }
 }
 
-struct FeelingView_Previews: PreviewProvider {
+struct LoadView_Previews: PreviewProvider {
     static var previews: some View {
-        FeelingView(iconName: "smiley.fill", color: .yellow)
+        LoadingView()
     }
 }
-/*
- ```
 
-With these updates, your AI indicator will have more responsive animations and transitions for various states, including loading, typing, dictating, talking, and different feelings like happy, sad, and thinking.
+struct TypeView: View {
+    @State private var scale: CGFloat = 0.5
+
+    var body: some View {
+        HStack(spacing: 5) {
+            Circle().frame(width: 10, height: 10)
+            Circle().frame(width: 10, height: 10)
+            Circle().frame(width: 10, height: 10)
+        }
+        .foregroundColor(.blue)
+        .scaleEffect(scale)
+        .animation(Animation.easeInOut(duration: 0.8).repeatForever(autoreverses: true))
+        .onAppear {
+            scale = 1.0
+        }
+    }
+}
+
+struct TypeView_Previews: PreviewProvider {
+    static var previews: some View {
+        TypingView()
+    }
+}
+
+struct DictateView: View {
+    @State private var opacity: Double = 0.2
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: 5)
+            .fill(Color.red)
+            .frame(width: 30, height: 50)
+            .opacity(opacity)
+            .animation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true))
+            .onAppear {
+                opacity = 1.0
+            }
+    }
+}
+
+struct DictateView_Previews: PreviewProvider {
+    static var previews: some View {
+        DictatingView()
+    }
+}
+
+struct TalkView: View {
+    @State private var offset: CGFloat = -10
+
+    var body: some View {
+        HStack(spacing: 5) {
+            Rectangle().frame(width: 5, height: 20)
+            Rectangle().frame(width: 5, height: 30)
+            Rectangle().frame(width: 5, height: 20)
+        }
+        .foregroundColor(.green)
+        .offset(y: offset)
+        .animation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true))
+        .onAppear {
+            offset = 10
+        }
+    }
+}
+
+struct TalkView_Previews: PreviewProvider {
+    static var previews: some View {
+        TalkingView()
+    }
+}
+// ```
+
+/*
+With this setup, you have a flexible and reusable `AIIndicatorView` that visually represents different states of the AI, including loading, typing, dictation, and talking, using smooth animations.
 */

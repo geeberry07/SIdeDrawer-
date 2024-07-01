@@ -1,18 +1,51 @@
-//
-//  MetalView.swift
-//  SIdeDrawer[
-//
-//  Created by garyberry09 on 7/1/24.
-//
+import UIKit
+import MetalKit
 
-import SwiftUI
+class MetalView: MTKView {
+    var particleSystem: ParticleSystem!
 
-struct MetalView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    required init(frame: CGRect) {
+        super.init(frame: frame, device: MTLCreateSystemDefaultDevice())
+        configure()
+    }
+    
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
+        device = MTLCreateSystemDefaultDevice()
+        configure()
+    }
+    
+    private func configure() {
+        guard let device = device else {
+            fatalError("GPU not available")
+        }
+        particleSystem = ParticleSystem(view: self)
+        delegate = self
+        enableSetNeedsDisplay = true
+    }
+
+    override func draw(_ rect: CGRect) {
+        guard let drawable = currentDrawable,
+              let passDescriptor = currentRenderPassDescriptor,
+              let commandQueue = device?.makeCommandQueue() else { return }
+        
+        let commandBuffer = commandQueue.makeCommandBuffer()!
+        let commandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: passDescriptor)!
+        
+        particleSystem.render(commandEncoder: commandEncoder, drawable: drawable)
+        
+        commandEncoder.endEncoding()
+        commandBuffer.present(drawable)
+        commandBuffer.commit()
     }
 }
 
-#Preview {
-    MetalView()
+extension MetalView: MTKViewDelegate {
+    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+        // Handle view size change if needed
+    }
+    
+    func draw(in view: MTKView) {
+        self.draw(view.bounds)
+    }
 }

@@ -6,15 +6,23 @@
 //
 
 import SwiftUI
+import UIKit
+import Foundation
+import Combine
 
 @main
-struct SIdeDrawer_App: App {
-    let persistenceController = PersistenceController.shared
+struct NavigationDrawer: App {
+    
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+           CustomContentView()
         }
+    }
+}
+struct NContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        CustomContentView()
+
     }
 }

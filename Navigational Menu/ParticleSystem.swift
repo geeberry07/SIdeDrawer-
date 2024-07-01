@@ -13,6 +13,7 @@ class ParticleSystem {
     private var particleArray: [Particle] = []
     private var vertexBuffer: MTLBuffer?
     private var texture: MTLTexture?
+    private var sampler: MTLSamplerState?
 
     init(view: MTKView) {
         guard let device = view.device else {
@@ -25,17 +26,19 @@ class ParticleSystem {
         loadAvatarTexture()
         createParticles()
         setupPipelineState()
+        setupSamplerState()
     }
 
     func render(commandEncoder: MTLRenderCommandEncoder, drawable: CAMetalDrawable) {
         updateParticles()
 
-        if let vertexBuffer = vertexBuffer {
-            commandEncoder.setRenderPipelineState(pipelineState!)
-            commandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-            commandEncoder.setFragmentTexture(texture, index: 0)
-            commandEncoder.drawPrimitives(type: .point, vertexStart: 0, vertexCount: particleArray.count)
-        }
+        let vertexBuffer = device.makeBuffer(bytes: particleArray, length: MemoryLayout<Particle>.stride * particleArray.count, options: [])
+
+        commandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+        commandEncoder.setRenderPipelineState(pipelineState!)
+        commandEncoder.setFragmentTexture(texture, index: 0)
+        commandEncoder.setFragmentSamplerState(sampler, index: 0)
+        commandEncoder.drawPrimitives(type: .point, vertexStart: 0, vertexCount: particleArray.count)
     }
 
     private func loadAvatarTexture() {
@@ -60,20 +63,38 @@ class ParticleSystem {
                 particleArray.append(Particle(position: position, velocity: velocity, color: color))
             }
         }
-        vertexBuffer = device.makeBuffer(bytes: particleArray, length: MemoryLayout<Particle>.stride * particleArray.count, options: [])
     }
 
     private func setupPipelineState() {
-        let library = device.makeDefaultLibrary()
-        let vertexFunction = library?.makeFunction(name: "particle_vertex")
-        let fragmentFunction = library?.makeFunction(name: "particle_fragment")
+        do {
+            let library = try device.makeLibrary(source: shaderSource, options: nil)
+            let vertexFunction = library.makeFunction(name: "particle_vertex")
+            let fragmentFunction = library.makeFunction(name: "particle_fragment")
 
-        let pipelineDescriptor = MTLRenderPipelineDescriptor()
-        pipelineDescriptor.vertexFunction = vertexFunction
-        pipelineDescriptor.fragmentFunction = fragmentFunction
-        pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+            let pipelineDescriptor = MTLRenderPipelineDescriptor()
+            pipelineDescriptor.vertexFunction = vertexFunction
+            pipelineDescriptor.fragmentFunction = fragmentFunction
+            pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
 
-        pipelineState = try? device.makeRenderPipelineState(descriptor: pipelineDescriptor)
+            pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
+        } catch {
+            print("Failed to create pipeline state: \(error)")
+        }
+    }
+
+    private func setupSamplerState() {
+        let samplerDescriptor = MTLSamplerDescriptor()
+        samplerDescriptor.minFilter = .linear
+        samplerDescriptor.magFilter = .linear
+        samplerDescriptor.mipFilter = .linear
+        samplerDescriptor.maxAnisotropy = 1
+        samplerDescriptor.sAddressMode = .clampToEdge
+        samplerDescriptor.tAddressMode = .clampToEdge
+        samplerDescriptor.rAddressMode = .clampToEdge
+        samplerDescriptor.normalizedCoordinates = true
+        samplerDescriptor.lodMinClamp = 0
+        samplerDescriptor.lodMaxClamp = Float.greatestFiniteMagnitude
+        sampler = device.makeSamplerState(descriptor: samplerDescriptor)
     }
 
     private func updateParticles() {
@@ -85,6 +106,5 @@ class ParticleSystem {
                 particleArray[i].color = SIMD4<Float>(Float.random(in: 0...1), Float.random(in: 0...1), Float.random(in: 0...1), 1.0)
             }
         }
-        vertexBuffer = device.makeBuffer(bytes: particleArray, length: MemoryLayout<Particle>.stride * particleArray.count, options: [])
     }
 }
